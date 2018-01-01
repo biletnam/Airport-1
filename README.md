@@ -26,4 +26,4 @@
 
 ## Авторы
 
-* **Nikolay Shepelev** - *all work* - [Venomkol](https://github.com/Venomkol)
+* **Nikolay Shepelev** - *вся работа* - [Venomkol](https://github.com/Venomkol)
