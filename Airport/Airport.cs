@@ -22,12 +22,12 @@ namespace Airport
         private String Address;     // Адрес аэропорта
 
         // Конструкторы
-        Airport()
+        public Airport()
         {
             Name = "Название не задано";
             Address = "Адрес не задан";
         }
-        Airport(String Name, String Address)
+        public Airport(String Name, String Address)
         {
             this.Name = Name;
             this.Address = Address;
@@ -64,12 +64,97 @@ namespace Airport
         }
     }
 
-    // Класс "Человек"
+    // Абстрактный класс "Человек"
     abstract class Human
     {
-        protected String FullName;
+        protected String FullName;  // Полное имя  формате "Фамилия Имя Отчество"
 
+        // Конструкторы
+        public Human()
+        {
+            FullName = "Полное имя не задано";
+        }
+        public Human(String FullName)
+        {
+            this.FullName = FullName;
+        }
+        public Human(String Surname, String Name, String Patronymic)
+        {
+            FullName = Surname + " " + Name + " " + Patronymic;
+        }
+
+        // Свойства
+        public String HumanFullName
+        {
+            get
+            {
+                return FullName;
+            }
+            set
+            {
+                if (value.Length > 0 && value.Length < 64)
+                    FullName = value;
+                else
+                    throw new ArgumentOutOfRangeException("FullName", "Полное имя человека должно быть длиной не более 64 символов и не пустым");
+            }
+        }
     }
+
+    // Абстрактный класс "Член команды"
+    abstract class Crew : Human
+    {
+        protected String PhoneNumber;   // Контактный номер телефона
+        protected String HomeAddress;   // Домашний адрес
+
+        // Конструкторы
+        public Crew() : base()
+        {
+            PhoneNumber = "Номер телефона не задан";
+            HomeAddress = "Домашний адрес не задан";
+        }
+        public Crew(String FullName, String PhoneNumber, String HomeAddress) : base(FullName)
+        {
+            this.PhoneNumber = PhoneNumber;
+            this.HomeAddress = HomeAddress;
+        }
+        public Crew(String Surname, String Name, String Patronymic, String PhoneNumber, String HomeAddress) : base(Surname, Name, Patronymic)
+        {
+            this.PhoneNumber = PhoneNumber;
+            this.HomeAddress = HomeAddress;
+        }
+
+        // Свойства
+        public String CrewPhoneNumber
+        {
+            get
+            {
+                return PhoneNumber;
+            }
+            set
+            {
+                if (value.Length > 0 && value.Length < 16)
+                    PhoneNumber = value;
+                else
+                    throw new ArgumentOutOfRangeException("PhoneNumber", "Номер телефона должен быть длиной не более 16 символов и не пустым");
+            }
+        }
+        public String CrewHomeAddress
+        {
+            get
+            {
+                return HomeAddress;
+            }
+            set
+            {
+                if (value.Length > 0 && value.Length < 128)
+                    HomeAddress = value;
+                else
+                    throw new ArgumentOutOfRangeException("HomeAddress", "Домашний адрес должен быть длиной не более 128 символов и не пустым");
+            }
+        }
+    }
+
+
 
     // Класс "Самолет"
     class Aircraft
