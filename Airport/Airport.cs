@@ -24,8 +24,8 @@ namespace Airport
         // Конструкторы
         public Airport()
         {
-            Name = "Название не задано";
-            Address = "Адрес не задан";
+            Name = "XXXX";
+            Address = "XXXX";
         }
         public Airport(String Name, String Address)
         {
@@ -72,7 +72,7 @@ namespace Airport
         // Конструкторы
         public Human()
         {
-            FullName = "Полное имя не задано";
+            FullName = "XXXX";
         }
         public Human(String FullName)
         {
@@ -109,8 +109,8 @@ namespace Airport
         // Конструкторы
         public Crew() : base()
         {
-            PhoneNumber = "Номер телефона не задан";
-            HomeAddress = "Домашний адрес не задан";
+            PhoneNumber = "+X-XXX-XXX-XXXX";
+            HomeAddress = "XXXX";
         }
         public Crew(String FullName, String PhoneNumber, String HomeAddress) : base(FullName)
         {
@@ -154,7 +154,77 @@ namespace Airport
         }
     }
 
+    // Класс "Пассажир"
+    class Passenger : Human
+    {
+        private Int32 Age;  // Возраст
 
+        // Конструкторы
+        public Passenger() : base()
+        {
+            Age = 200;
+        }
+        public Passenger(String FullName, Int32 Age) : base(FullName)
+        {
+            this.Age = Age;
+        }
+        public Passenger(String Surname, String Name, String Patronymic, Int32 Age) : base(Surname, Name, Patronymic)
+        {
+            this.Age = Age;
+        }
+
+        // Свойства
+        public Int32 PassengerAge
+        {
+            get
+            {
+                return Age;
+            }
+            set
+            {
+                if (value >= 0 && value <= 200)
+                    Age = value;
+                else
+                    throw new ArgumentOutOfRangeException("Age", "Возраст пассажира должен быть не отрицательным и менее 200");
+            }
+        }
+    }
+
+    // Класс "Пилот"
+    class Pilot : Crew
+    {
+        private String LicenseNumber;   // Номер лицензии
+
+        // Конструкторы
+        public Pilot() : base()
+        {
+            LicenseNumber = "XXXXXXXXXXXX";
+        }
+        public Pilot(String FullName, String PhoneNumber, String HomeAddress, String LicenseNumber) : base(FullName, PhoneNumber, HomeAddress)
+        {
+            this.LicenseNumber = LicenseNumber;
+        }
+        public Pilot(String Surname, String Name, String Patronymic, String PhoneNumber, String HomeAddress, String LicenseNumber) : base(Surname, Name, Patronymic, PhoneNumber, HomeAddress)
+        {
+            this.LicenseNumber = LicenseNumber;
+        }
+
+        // Свойства
+        public String PilotLicenseNumber
+        {
+            get
+            {
+                return LicenseNumber;
+            }
+            set
+            {
+                if (value.Length > 0 && value.Length < 16)
+                    LicenseNumber = value;
+                else
+                    throw new ArgumentOutOfRangeException("LicenseNumber", "Номер лицензии должен быть длиной не более 16 символов и не пустым");
+            }
+        }
+    }
 
     // Класс "Самолет"
     class Aircraft
