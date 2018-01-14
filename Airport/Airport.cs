@@ -14,7 +14,15 @@ namespace Airport
         Transit     // Транзит
     };
 
-    
+    // Класс мест
+    enum TravelClass
+    {
+        FirstClass,     // Первый класс
+        BusinessClass,  // Бизнесс класс
+        ComfortClass,   // Комфорт класс
+        EconomyClass    // Эконом класс
+    }
+
     // Класс "Аэропорт"
     class Airport
     {
@@ -312,22 +320,39 @@ namespace Airport
     // Класс "Билет"
     class Ticket
     {
-        private Int32 Seat;     // Место
-        private Double Price;   // Цена
+        private Passenger Passenger;    // Пассажир
+        private Int32 Seat;             // Место
+        private Double Price;           // Цена
 
         // Конструкторы
-        Ticket()
+        public Ticket()
         {
             Seat = 0;
             Price = 0.0;
+            Passenger = new Passenger();
         }
-        Ticket(Int32 Seat, Double Price)
+        public Ticket(Int32 Seat, Double Price, Passenger Passenger)
         {
             this.Seat = Seat;
             this.Price = Price;
+            this.Passenger = Passenger;
         }
 
         // Свойства
+        public Passenger TicketPassenger
+        {
+            get
+            {
+                return Passenger;
+            }
+            set
+            {
+                if (value != null)
+                    Passenger = value;
+                else
+                    Passenger = new Passenger();
+            }
+        }
         public Int32 TicketSeat
         {
             get
@@ -370,5 +395,208 @@ namespace Airport
         private Airport ArrivalPoint;       // Место назначения рейса
         private Aircraft Plane;             // Самолет назначенный на данный рейс
         private List<Ticket> Tickets;       // Билеты на самолет
+
+        // Конструкторы
+        public Flight()
+        {
+            Type = FlightType.Transit;
+            Number = "XXXX";
+            DepartureTime = DateTime.Now;
+            ArrivalTime = DateTime.Now;
+            ThisPoint = new Airport();
+            DeparturePoint = new Airport();
+            ArrivalPoint = new Airport();
+            Plane = new Aircraft();
+            Tickets = new List<Ticket>();
+        }
+
+        // Свойства
+        public FlightType FlightType
+        {
+            get
+            {
+                return Type;
+            }
+            set
+            {
+                Type = value;
+            }
+        }
+        public String FlightNumber
+        {
+            get
+            {
+                return Number;
+            }
+            set
+            {
+                if (value.Length > 0 && value.Length < 16)
+                    Number = value;
+                else
+                    throw new ArgumentOutOfRangeException("FlightNumber", "Номер рейса должен быть длиной не более 16 символов и не пустым");
+            }
+        }
+        public DateTime FlightDepartureTime
+        {
+            get
+            {
+                return DepartureTime;
+            }
+            set
+            {
+                DepartureTime = value;
+            }
+        }
+        public DateTime FlightArrivalTime
+        {
+            get
+            {
+                return ArrivalTime;
+            }
+            set
+            {
+                ArrivalTime = value;
+            }
+        }
+        public Airport FlightThisPoint
+        {
+            get
+            {
+                return ThisPoint;
+            }
+            set
+            {
+                if (value != null)
+                    ThisPoint = value;
+                else
+                    ThisPoint = new Airport();
+            }
+        }
+        public Airport FlightDeparturePoint
+        {
+            get
+            {
+                return DeparturePoint;
+            }
+            set
+            {
+                if (value != null)
+                    DeparturePoint = value;
+                else
+                    DeparturePoint = new Airport();
+            }
+        }
+        public Airport FlightArrivalPoint
+        {
+            get
+            {
+                return ArrivalPoint;
+            }
+            set
+            {
+                if (value != null)
+                    ArrivalPoint = value;
+                else
+                    ArrivalPoint = new Airport();
+            }
+        }
+        public Aircraft FlightPlane
+        {
+            get
+            {
+                return Plane;
+            }
+            set
+            {
+                if (value != null)
+                    Plane = value;
+                else
+                    Plane = new Aircraft();
+            }
+        }
+        public List<Ticket> FlightTickets
+        {
+            get
+            {
+                return Tickets;
+            }
+            set
+            {
+                if (value != null)
+                    Tickets = value;
+                else
+                    Tickets = new List<Ticket>();
+            }
+        }
+
+        // Методы для работы с билетами
+        // Посчитать цену билета в зависимости от класса места
+        private Double calculatePrice(Double BasePrice, TravelClass TravelClass)
+        {
+            Double Price = 0.0;
+            switch (TravelClass)
+            {
+                case TravelClass.FirstClass:
+                    Price = 2 * BasePrice;
+                    break;
+                case TravelClass.BusinessClass:
+                    Price = 1.5 * BasePrice;
+                    break;
+                case TravelClass.ComfortClass:
+                    Price = 1.2 * BasePrice;
+                    break;
+                case TravelClass.EconomyClass:
+                    Price = BasePrice;
+                    break;
+            }
+            return Price;
+        }
+        // Добавить билет
+        public void AddTicket(Int32 Seat, Double Price, Passenger Passenger, TravelClass TravelClass = TravelClass.EconomyClass)
+        {
+            Price = calculatePrice(Price, TravelClass);
+            if (Seat > 0 && Seat <= Plane.AircraftSeats)
+                Tickets.Add(new Ticket(Seat, Price, Passenger));
+        }
+        // Удалить билет
+        public void RemoveTicket(Int32 Seat)
+        {
+            for (int i = 0; i < Tickets.Count; i++)
+                if (Tickets[i].TicketSeat == Seat)
+                {
+                    Tickets.RemoveAt(i);
+                    break;
+                }
+        }
+        // Получить список свободных мест в самолете
+        public List<Int32> GetFreeTickets()
+        {
+            List<Int32> FreeTickets = new List<Int32>();
+            for (int i = 1; i <= Plane.AircraftSeats; i++)
+            {
+                bool IsFree = true;
+                foreach (Ticket Ticket in Tickets)
+                    if (Ticket.TicketSeat == i)
+                    {
+                        IsFree = false;
+                        break;
+                    }
+                if (IsFree)
+                    FreeTickets.Add(i);
+            }
+            return FreeTickets;
+        }
+        // Узнать, свободное ли место
+        public Boolean IsFreeSeat(Int32 Seat)
+        {
+            bool IsFree = true;
+            foreach (Ticket Ticket in Tickets)
+                if (Ticket.TicketSeat == Seat)
+                {
+                    IsFree = false;
+                    break;
+                }
+            return IsFree;
+        }
     }
 }
