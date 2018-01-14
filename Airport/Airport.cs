@@ -24,6 +24,7 @@ namespace Airport
     }
 
     // Класс "Аэропорт"
+    [Serializable]
     class Airport
     {
         private String Name;        // Название аэропорта
@@ -73,6 +74,7 @@ namespace Airport
     }
 
     // Абстрактный класс "Человек"
+    [Serializable]
     abstract class Human
     {
         protected String FullName;  // Полное имя  формате "Фамилия Имя Отчество"
@@ -109,6 +111,7 @@ namespace Airport
     }
 
     // Абстрактный класс "Член команды"
+    [Serializable]
     abstract class Crew : Human
     {
         protected String PhoneNumber;   // Контактный номер телефона
@@ -163,6 +166,7 @@ namespace Airport
     }
 
     // Класс "Пассажир"
+    [Serializable]
     class Passenger : Human
     {
         private Int32 Age;  // Возраст
@@ -199,6 +203,7 @@ namespace Airport
     }
 
     // Класс "Пилот"
+    [Serializable]
     class Pilot : Crew
     {
         private String LicenseNumber;   // Номер лицензии
@@ -235,6 +240,7 @@ namespace Airport
     }
 
     // Класс "Самолет"
+    [Serializable]
     class Aircraft
     {
         private Pilot СhiefPilot;       // Первый пилот
@@ -318,6 +324,7 @@ namespace Airport
     }
 
     // Класс "Билет"
+    [Serializable]
     class Ticket
     {
         private Passenger Passenger;    // Пассажир
@@ -384,13 +391,13 @@ namespace Airport
     }
 
     // Класс "Рейс"
+    [Serializable]
     class Flight
     {
         private FlightType Type;            // Тип рейса
         private String Number;              // Номер рейса
         private DateTime DepartureTime;     // Дата/время отправления из текущего аэропорта
         private DateTime ArrivalTime;       // Дата/время прибытия в место назначения
-        private Airport ThisPoint;          // Текущий аэропорт
         private Airport DeparturePoint;     // Место отправления рейса
         private Airport ArrivalPoint;       // Место назначения рейса
         private Aircraft Plane;             // Самолет назначенный на данный рейс
@@ -403,7 +410,6 @@ namespace Airport
             Number = "XXXX";
             DepartureTime = DateTime.Now;
             ArrivalTime = DateTime.Now;
-            ThisPoint = new Airport();
             DeparturePoint = new Airport();
             ArrivalPoint = new Airport();
             Plane = new Aircraft();
@@ -456,20 +462,6 @@ namespace Airport
             set
             {
                 ArrivalTime = value;
-            }
-        }
-        public Airport FlightThisPoint
-        {
-            get
-            {
-                return ThisPoint;
-            }
-            set
-            {
-                if (value != null)
-                    ThisPoint = value;
-                else
-                    ThisPoint = new Airport();
             }
         }
         public Airport FlightDeparturePoint
