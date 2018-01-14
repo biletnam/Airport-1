@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Airport
 {
     // Тип рейса с точки зрения аэропорта
-    enum FlightType
+    public enum FlightType
     {
         Depart,     // Отправка
         Arrival,    // Прибытие
@@ -15,7 +15,7 @@ namespace Airport
     };
 
     // Класс мест
-    enum TravelClass
+    public enum TravelClass
     {
         FirstClass,     // Первый класс
         BusinessClass,  // Бизнесс класс
@@ -25,7 +25,7 @@ namespace Airport
 
     // Класс "Аэропорт"
     [Serializable]
-    class Airport
+    public class Airport
     {
         private String Name;        // Название аэропорта
         private String Address;     // Адрес аэропорта
@@ -75,7 +75,7 @@ namespace Airport
 
     // Абстрактный класс "Человек"
     [Serializable]
-    abstract class Human
+    public abstract class Human
     {
         protected String FullName;  // Полное имя  формате "Фамилия Имя Отчество"
 
@@ -112,7 +112,7 @@ namespace Airport
 
     // Абстрактный класс "Член команды"
     [Serializable]
-    abstract class Crew : Human
+    public abstract class Crew : Human
     {
         protected String PhoneNumber;   // Контактный номер телефона
         protected String HomeAddress;   // Домашний адрес
@@ -167,7 +167,7 @@ namespace Airport
 
     // Класс "Пассажир"
     [Serializable]
-    class Passenger : Human
+    public class Passenger : Human
     {
         private Int32 Age;  // Возраст
 
@@ -204,7 +204,7 @@ namespace Airport
 
     // Класс "Пилот"
     [Serializable]
-    class Pilot : Crew
+    public class Pilot : Crew
     {
         private String LicenseNumber;   // Номер лицензии
 
@@ -241,7 +241,7 @@ namespace Airport
 
     // Класс "Самолет"
     [Serializable]
-    class Aircraft
+    public class Aircraft
     {
         private Pilot СhiefPilot;       // Первый пилот
         private String Model;           // Модель самолета
@@ -325,7 +325,7 @@ namespace Airport
 
     // Класс "Билет"
     [Serializable]
-    class Ticket
+    public class Ticket
     {
         private Passenger Passenger;    // Пассажир
         private Int32 Seat;             // Место
@@ -392,7 +392,7 @@ namespace Airport
 
     // Класс "Рейс"
     [Serializable]
-    class Flight
+    public class Flight
     {
         private FlightType Type;            // Тип рейса
         private String Number;              // Номер рейса

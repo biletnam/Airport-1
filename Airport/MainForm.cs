@@ -123,7 +123,7 @@ namespace Airport
             // Десериализуем список самолетов
             try
             {
-                Stream stream = new FileStream("thisairport.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
+                Stream stream = new FileStream("aircrafts.bin", FileMode.Open, FileAccess.Read, FileShare.Read);
                 Aircrafts = (List<Aircraft>) formatter.Deserialize(stream);
                 stream.Close();
             }
@@ -215,7 +215,13 @@ namespace Airport
 
         private void thisAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Открываем форму текущего аэропорта
+            EditThisAirport NewForm = new EditThisAirport(ThisAirport);
+            NewForm.ShowDialog(this);
 
+            // Возвращаем данные
+            if (NewForm.EditThisAirportIfNotLeft)
+                ThisAirport = NewForm.EditThisAirportThisAirport;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
