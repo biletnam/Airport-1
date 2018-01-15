@@ -60,18 +60,18 @@ namespace Airport
 
         private void button_edit_Click(object sender, EventArgs e)
         {
-            // Проверяем введеные данные
+            // Проверяем введенные данные
             if (textBox_name.Text.Length == 0)
             {
                 MessageBox.Show(this,
-                                "В названии аэопорта допущена ошибка: название не может быть пустым",
+                                "В названии аэропорта допущена ошибка: название не может быть пустым",
                                 "Название аэропорта введено некорректно",
                                 MessageBoxButtons.OK);
                 textBox_name.Focus();
                 return;
             }
 
-            // Проверяем введеные данные
+            // Проверяем введенные данные
             if (textBox_address.Text.Length == 0)
             {
                 MessageBox.Show(this,

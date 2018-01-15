@@ -256,7 +256,7 @@ namespace Airport
             SerialNumber = "XXXXX";
             Seats = 0;
         }
-        public Aircraft(Pilot СhiefPilot, Pilot SecondPilot, String Model, String SerialNumber, Int32 Seats)
+        public Aircraft(Pilot СhiefPilot, String Model, String SerialNumber, Int32 Seats)
         {
             this.СhiefPilot = СhiefPilot;
             this.Model = Model;

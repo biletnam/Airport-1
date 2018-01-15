@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 99);
+            this.ClientSize = new System.Drawing.Size(249, 101);
             this.Controls.Add(this.button_edit);
             this.Controls.Add(this.label_address);
             this.Controls.Add(this.label_name);

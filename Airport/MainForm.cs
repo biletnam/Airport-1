@@ -38,10 +38,10 @@ namespace Airport
                                                                             "Самолет" };
         private static List<String> AirportTableHeaders = new List<String> {    "Название",
                                                                                 "Адрес" };
-        private static List<String> AircraftTableHeaders = new List<String> {   "Пилот",
-                                                                                "Модель",
+        private static List<String> AircraftTableHeaders = new List<String> {   "Модель",
                                                                                 "Номер",
-                                                                                "Мест" };
+                                                                                "Мест",
+                                                                                "Пилот"};
 
         public MainForm()
         {
@@ -191,10 +191,10 @@ namespace Airport
             {
                 foreach (Aircraft Aircraft in Aircrafts)
                 {
-                    string[] newRow = new string[] {    Aircraft.AircraftСhiefPilot.HumanFullName,
-                                                        Aircraft.AircraftModel,
+                    string[] newRow = new string[] {    Aircraft.AircraftModel,
                                                         Aircraft.AircraftSerialNumber,
-                                                        Convert.ToString(Aircraft.AircraftSeats) };
+                                                        Convert.ToString(Aircraft.AircraftSeats),
+                                                        Aircraft.AircraftСhiefPilot.HumanFullName};
                     dataGridView_main.Rows.Add(newRow);
                 }
             }
@@ -202,7 +202,7 @@ namespace Airport
 
         private void thisAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Открываем форму текущего аэропорта
+            // Открываем форму изменения текущего аэропорта
             EditAirport NewForm = new EditAirport(ThisAirport, FormRole.Changing);
             NewForm.ShowDialog(this);
 
@@ -218,7 +218,7 @@ namespace Airport
 
         private void addAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Открываем форму текущего аэропорта
+            // Открываем форму добавления аэропорта
             EditAirport NewForm = new EditAirport(new Airport(), FormRole.Adding);
             NewForm.ShowDialog(this);
 
@@ -229,7 +229,7 @@ namespace Airport
 
         private void editAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Открываем форму текущего аэропорта
+            // Открываем форму изменения выбранного аэропорта
             EditAirport NewForm = new EditAirport(Airports[dataGridView_main.CurrentRow.Index], FormRole.Changing);
             NewForm.ShowDialog(this);
 
@@ -260,12 +260,24 @@ namespace Airport
 
         private void addAircraftToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Открываем форму добавления самолета
+            EditAircraft NewForm = new EditAircraft(new Aircraft(), FormRole.Adding);
+            NewForm.ShowDialog(this);
 
+            // Возвращаем данные
+            if (NewForm.EditThisAircraftIfNotLeft)
+                Aircrafts.Add(NewForm.EditThisAircraftThisAircraft);
         }
 
         private void editAircraftToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Открываем форму изменения выбранного самолета
+            EditAircraft NewForm = new EditAircraft(Aircrafts[dataGridView_main.CurrentRow.Index], FormRole.Changing);
+            NewForm.ShowDialog(this);
 
+            // Возвращаем данные
+            if (NewForm.EditThisAircraftIfNotLeft)
+                Aircrafts[dataGridView_main.CurrentRow.Index] = NewForm.EditThisAircraftThisAircraft;
         }
 
         private void removeAircraftToolStripMenuItem_Click(object sender, EventArgs e)
