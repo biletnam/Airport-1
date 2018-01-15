@@ -47,9 +47,9 @@
             this.button_arrivalTime = new System.Windows.Forms.Button();
             this.groupBox_flight = new System.Windows.Forms.GroupBox();
             this.groupBox_tickets = new System.Windows.Forms.GroupBox();
+            this.dataGridView_tickets = new System.Windows.Forms.DataGridView();
             this.button_removeTicket = new System.Windows.Forms.Button();
             this.button_sellTicket = new System.Windows.Forms.Button();
-            this.dataGridView_tickets = new System.Windows.Forms.DataGridView();
             this.groupBox_flight.SuspendLayout();
             this.groupBox_tickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).BeginInit();
@@ -57,6 +57,9 @@
             // 
             // comboBox_flightType
             // 
+            this.comboBox_flightType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_flightType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox_flightType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_flightType.FormattingEnabled = true;
             this.comboBox_flightType.Location = new System.Drawing.Point(150, 18);
             this.comboBox_flightType.Name = "comboBox_flightType";
@@ -88,6 +91,8 @@
             // 
             // comboBox_departurePoint
             // 
+            this.comboBox_departurePoint.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_departurePoint.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox_departurePoint.FormattingEnabled = true;
             this.comboBox_departurePoint.Location = new System.Drawing.Point(150, 123);
             this.comboBox_departurePoint.Name = "comboBox_departurePoint";
@@ -96,6 +101,8 @@
             // 
             // comboBox_arrivalPoint
             // 
+            this.comboBox_arrivalPoint.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_arrivalPoint.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox_arrivalPoint.FormattingEnabled = true;
             this.comboBox_arrivalPoint.Location = new System.Drawing.Point(150, 150);
             this.comboBox_arrivalPoint.Name = "comboBox_arrivalPoint";
@@ -239,6 +246,14 @@
             this.groupBox_tickets.TabStop = false;
             this.groupBox_tickets.Text = "Билеты";
             // 
+            // dataGridView_tickets
+            // 
+            this.dataGridView_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_tickets.Location = new System.Drawing.Point(6, 18);
+            this.dataGridView_tickets.Name = "dataGridView_tickets";
+            this.dataGridView_tickets.Size = new System.Drawing.Size(418, 150);
+            this.dataGridView_tickets.TabIndex = 27;
+            // 
             // button_removeTicket
             // 
             this.button_removeTicket.Location = new System.Drawing.Point(324, 174);
@@ -256,14 +271,6 @@
             this.button_sellTicket.TabIndex = 26;
             this.button_sellTicket.Text = "Продать";
             this.button_sellTicket.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView_tickets
-            // 
-            this.dataGridView_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tickets.Location = new System.Drawing.Point(6, 18);
-            this.dataGridView_tickets.Name = "dataGridView_tickets";
-            this.dataGridView_tickets.Size = new System.Drawing.Size(418, 150);
-            this.dataGridView_tickets.TabIndex = 27;
             // 
             // EditFlight
             // 

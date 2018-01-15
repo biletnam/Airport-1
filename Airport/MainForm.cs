@@ -287,12 +287,24 @@ namespace Airport
 
         private void addFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Открываем форму добавления рейса
+            EditFlight NewForm = new EditFlight(new Flight(), FormRole.Adding, ThisAirport, Airports, Aircrafts);
+            NewForm.ShowDialog(this);
 
+            // Возвращаем данные
+            if (NewForm.EditFlightIfNotLeft)
+                Flights.Add(NewForm.EditFlightThisFlight);
         }
 
         private void editFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Открываем форму изменения выбранного рейса
+            EditFlight NewForm = new EditFlight(Flights[dataGridView_main.CurrentRow.Index], FormRole.Changing, ThisAirport, Airports, Aircrafts);
+            NewForm.ShowDialog(this);
 
+            // Возвращаем данные
+            if (NewForm.EditFlightIfNotLeft)
+                Flights[dataGridView_main.CurrentRow.Index] = NewForm.EditFlightThisFlight;
         }
 
         private void removeFlightToolStripMenuItem_Click(object sender, EventArgs e)
