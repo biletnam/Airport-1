@@ -47,6 +47,9 @@
             this.addAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_main)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +71,10 @@
             // 
             this.flightsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showFlightsToolStripMenuItem,
-            this.sepFToolStripMenuItem});
+            this.sepFToolStripMenuItem,
+            this.addFlightToolStripMenuItem,
+            this.editFlightToolStripMenuItem,
+            this.removeFlightToolStripMenuItem});
             this.flightsToolStripMenuItem.Name = "flightsToolStripMenuItem";
             this.flightsToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.flightsToolStripMenuItem.Text = "Рейсы";
@@ -76,14 +82,14 @@
             // showFlightsToolStripMenuItem
             // 
             this.showFlightsToolStripMenuItem.Name = "showFlightsToolStripMenuItem";
-            this.showFlightsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.showFlightsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.showFlightsToolStripMenuItem.Text = "Показать";
             this.showFlightsToolStripMenuItem.Click += new System.EventHandler(this.showFlightsToolStripMenuItem_Click);
             // 
             // sepFToolStripMenuItem
             // 
             this.sepFToolStripMenuItem.Name = "sepFToolStripMenuItem";
-            this.sepFToolStripMenuItem.Size = new System.Drawing.Size(121, 6);
+            this.sepFToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
             // airportsToolStripMenuItem
             // 
@@ -207,6 +213,27 @@
             this.editAircraftToolStripMenuItem.Text = "Изменить";
             this.editAircraftToolStripMenuItem.Click += new System.EventHandler(this.editAircraftToolStripMenuItem_Click);
             // 
+            // addFlightToolStripMenuItem
+            // 
+            this.addFlightToolStripMenuItem.Name = "addFlightToolStripMenuItem";
+            this.addFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addFlightToolStripMenuItem.Text = "Добавить";
+            this.addFlightToolStripMenuItem.Click += new System.EventHandler(this.addFlightToolStripMenuItem_Click);
+            // 
+            // editFlightToolStripMenuItem
+            // 
+            this.editFlightToolStripMenuItem.Name = "editFlightToolStripMenuItem";
+            this.editFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editFlightToolStripMenuItem.Text = "Изменить";
+            this.editFlightToolStripMenuItem.Click += new System.EventHandler(this.editFlightToolStripMenuItem_Click);
+            // 
+            // removeFlightToolStripMenuItem
+            // 
+            this.removeFlightToolStripMenuItem.Name = "removeFlightToolStripMenuItem";
+            this.removeFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeFlightToolStripMenuItem.Text = "Удалить";
+            this.removeFlightToolStripMenuItem.Click += new System.EventHandler(this.removeFlightToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +274,9 @@
         private System.Windows.Forms.ToolStripMenuItem addAircraftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editAircraftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeAircraftToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addFlightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editFlightToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeFlightToolStripMenuItem;
     }
 }
 

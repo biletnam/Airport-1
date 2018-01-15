@@ -284,5 +284,20 @@ namespace Airport
         {
             Aircrafts.RemoveAt(dataGridView_main.CurrentRow.Index);
         }
+
+        private void addFlightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editFlightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeFlightToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Flights.RemoveAt(dataGridView_main.CurrentRow.Index);
+        }
     }
 }
