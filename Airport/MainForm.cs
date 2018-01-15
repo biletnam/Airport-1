@@ -13,6 +13,13 @@ using System.Windows.Forms;
 
 namespace Airport
 {
+    // Роль формы, добавление или изменение элемента
+    public enum FormRole
+    {
+        Adding,     // Добавление
+        Changing    // Изменение
+    }
+
     public partial class MainForm : Form
     {
         private Airport ThisAirport;        // Текущий аэропорт
@@ -193,30 +200,10 @@ namespace Airport
             }
         }
 
-        private void flightsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showDataOnDataGridView(FlightTableHeaders, 1);
-        }
-
-        private void airportsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showDataOnDataGridView(AirportTableHeaders, 2);
-        }
-
-        private void planesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showDataOnDataGridView(AircraftTableHeaders, 3);
-        }
-
-        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void thisAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Открываем форму текущего аэропорта
-            EditThisAirport NewForm = new EditThisAirport(ThisAirport);
+            EditAirport NewForm = new EditAirport(ThisAirport, FormRole.Changing);
             NewForm.ShowDialog(this);
 
             // Возвращаем данные
@@ -227,6 +214,63 @@ namespace Airport
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             SerializeAll();
+        }
+
+        private void addAirportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Открываем форму текущего аэропорта
+            EditAirport NewForm = new EditAirport(new Airport(), FormRole.Adding);
+            NewForm.ShowDialog(this);
+
+            // Возвращаем данные
+            if (NewForm.EditThisAirportIfNotLeft)
+                Airports.Add(NewForm.EditThisAirportThisAirport);
+        }
+
+        private void editAirportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Открываем форму текущего аэропорта
+            EditAirport NewForm = new EditAirport(Airports[dataGridView_main.CurrentRow.Index], FormRole.Changing);
+            NewForm.ShowDialog(this);
+
+            // Возвращаем данные
+            if (NewForm.EditThisAirportIfNotLeft)
+                Airports[dataGridView_main.CurrentRow.Index] = NewForm.EditThisAirportThisAirport;
+        }
+
+        private void removeAirportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Airports.RemoveAt(dataGridView_main.CurrentRow.Index);
+        }
+
+        private void showFlightsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showDataOnDataGridView(FlightTableHeaders, 1);
+        }
+
+        private void showAirportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showDataOnDataGridView(AirportTableHeaders, 2);
+        }
+
+        private void showAircraftsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showDataOnDataGridView(AircraftTableHeaders, 3);
+        }
+
+        private void addAircraftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editAircraftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void removeAircraftToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Aircrafts.RemoveAt(dataGridView_main.CurrentRow.Index);
         }
     }
 }

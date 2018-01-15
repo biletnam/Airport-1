@@ -50,11 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airport.cs" />
-    <Compile Include="EditThisAirport.cs">
+    <Compile Include="EditAircraft.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditThisAirport.Designer.cs">
-      <DependentUpon>EditThisAirport.cs</DependentUpon>
+    <Compile Include="EditAircraft.Designer.cs">
+      <DependentUpon>EditAircraft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditAirport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditAirport.Designer.cs">
+      <DependentUpon>EditAirport.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -64,8 +70,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="EditThisAirport.resx">
-      <DependentUpon>EditThisAirport.cs</DependentUpon>
+    <EmbeddedResource Include="EditAircraft.resx">
+      <DependentUpon>EditAircraft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditAirport.resx">
+      <DependentUpon>EditAirport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

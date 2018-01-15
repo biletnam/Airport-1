@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace Airport
 {
-    public partial class EditThisAirport : Form
+    public partial class EditAirport : Form
     {
         // Флаг того, покинул ли пользователь форму не введя данные
         private bool IfNotLeft;
-        // Новый зал
+        // Новый аэропорт
         private Airport ThisAirport;
 
         // Свойства для возврата значений из формы
@@ -33,9 +33,21 @@ namespace Airport
             }
         }
 
-        public EditThisAirport(Airport ThisAirport)
+        public EditAirport(Airport ThisAirport, FormRole FR)
         {
             InitializeComponent();
+
+            // Устанавливаем название формы и подпись кнопки в зависимости от роли формы
+            if (FR == FormRole.Adding)
+            {
+                Text = "Добавить аэропорт";
+                button_edit.Text = "Добавить";
+            }
+            else if (FR == FormRole.Changing)
+            {
+                Text = "Изменить аэропорт";
+                button_edit.Text = "Изменить";
+            }
 
             // Заполняем форму
             textBox_name.Text = ThisAirport.AirportName;
@@ -48,6 +60,7 @@ namespace Airport
 
         private void button_edit_Click(object sender, EventArgs e)
         {
+            // Проверяем введеные данные
             if (textBox_name.Text.Length == 0)
             {
                 MessageBox.Show(this,
@@ -58,6 +71,7 @@ namespace Airport
                 return;
             }
 
+            // Проверяем введеные данные
             if (textBox_address.Text.Length == 0)
             {
                 MessageBox.Show(this,
@@ -75,12 +89,14 @@ namespace Airport
             this.Close();
         }
 
+        // Автопереход на следующий элемент формы на нажатию enter
         private void textBox_name_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 textBox_address.Focus();
         }
 
+        // Автопереход на следующий элемент формы на нажатию enter
         private void textBox_address_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

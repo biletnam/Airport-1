@@ -1,6 +1,6 @@
 ﻿namespace Airport
 {
-    partial class EditThisAirport
+    partial class EditAirport
     {
         /// <summary>
         /// Required designer variable.
@@ -79,7 +79,7 @@
             this.button_edit.UseVisualStyleBackColor = true;
             this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
             // 
-            // EditThisAirport
+            // EditAirport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -92,9 +92,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "EditThisAirport";
+            this.Name = "EditAirport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Текущий аэропорт";
+            this.Text = "Аэропорт";
             this.ResumeLayout(false);
             this.PerformLayout();
 

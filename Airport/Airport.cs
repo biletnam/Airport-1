@@ -12,7 +12,7 @@ namespace Airport
         Depart,     // Отправка
         Arrival,    // Прибытие
         Transit     // Транзит
-    };
+    }
 
     // Класс мест
     public enum TravelClass
