@@ -56,6 +56,15 @@ namespace Airport
             // Загружаем данные из файла
             DeserializeAll();
             // Выводим данные на таблицу
+            addFlightToolStripMenuItem.Enabled = true;
+            editFlightToolStripMenuItem.Enabled = false;
+            removeFlightToolStripMenuItem.Enabled = false;
+            addAirportToolStripMenuItem.Enabled = false;
+            editAirportToolStripMenuItem.Enabled = false;
+            removeAirportToolStripMenuItem.Enabled = false;
+            addAircraftToolStripMenuItem.Enabled = false;
+            editAircraftToolStripMenuItem.Enabled = false;
+            removeAircraftToolStripMenuItem.Enabled = false;
             showDataOnDataGridView(FlightTableHeaders, 1);
         }
 
@@ -168,14 +177,24 @@ namespace Airport
             {
                 foreach (Flight Flight in Flights)
                 {
-                    string[] newRow = new string[] {    Convert.ToString(Flight.FlightType),
+                    string[] newRow = new string[] {    (Flight.FlightType == FlightType.Depart) ? "Отправка" : ((Flight.FlightType == FlightType.Arrival) ? "Прибытие" : "Транзит"),
                                                         Flight.FlightNumber,
                                                         Convert.ToString(Flight.FlightDepartureTime),
                                                         Convert.ToString(Flight.FlightArrivalTime),
-                                                        Flight.FlightDeparturePoint.AirportName + Flight.FlightDeparturePoint.AirportAddress,
-                                                        Flight.FlightArrivalPoint.AirportName + Flight.FlightArrivalPoint.AirportAddress,
+                                                        Flight.FlightDeparturePoint.AirportName + " : " + Flight.FlightDeparturePoint.AirportAddress,
+                                                        Flight.FlightArrivalPoint.AirportName + " : " + Flight.FlightArrivalPoint.AirportAddress,
                                                         Flight.FlightPlane.AircraftModel };
                     dataGridView_main.Rows.Add(newRow);
+                }
+                if (Flights.Count == 0)
+                {
+                    editFlightToolStripMenuItem.Enabled = false;
+                    removeFlightToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editFlightToolStripMenuItem.Enabled = true;
+                    removeFlightToolStripMenuItem.Enabled = true;
                 }
             }
             else if (TableIndex == 2)
@@ -185,6 +204,16 @@ namespace Airport
                     string[] newRow = new string[] {    Airport.AirportName,
                                                         Airport.AirportAddress };
                     dataGridView_main.Rows.Add(newRow);
+                }
+                if (Airports.Count == 0)
+                {
+                    editAirportToolStripMenuItem.Enabled = false;
+                    removeAirportToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editAirportToolStripMenuItem.Enabled = true;
+                    removeAirportToolStripMenuItem.Enabled = true;
                 }
             }
             else if (TableIndex == 3)
@@ -196,6 +225,16 @@ namespace Airport
                                                         Convert.ToString(Aircraft.AircraftSeats),
                                                         Aircraft.AircraftСhiefPilot.HumanFullName};
                     dataGridView_main.Rows.Add(newRow);
+                }
+                if (Aircrafts.Count == 0)
+                {
+                    editAircraftToolStripMenuItem.Enabled = false;
+                    removeAircraftToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editAircraftToolStripMenuItem.Enabled = true;
+                    removeAircraftToolStripMenuItem.Enabled = true;
                 }
             }
         }
@@ -225,6 +264,8 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditThisAirportIfNotLeft)
                 Airports.Add(NewForm.EditThisAirportThisAirport);
+
+            showDataOnDataGridView(AirportTableHeaders, 2);
         }
 
         private void editAirportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -236,25 +277,56 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditThisAirportIfNotLeft)
                 Airports[dataGridView_main.CurrentRow.Index] = NewForm.EditThisAirportThisAirport;
+
+            showDataOnDataGridView(AirportTableHeaders, 2);
         }
 
         private void removeAirportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Airports.RemoveAt(dataGridView_main.CurrentRow.Index);
+
+            showDataOnDataGridView(AirportTableHeaders, 2);
         }
 
         private void showFlightsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            addFlightToolStripMenuItem.Enabled = true;
+            editFlightToolStripMenuItem.Enabled = false;
+            removeFlightToolStripMenuItem.Enabled = false;
+            addAirportToolStripMenuItem.Enabled = false;
+            editAirportToolStripMenuItem.Enabled = false;
+            removeAirportToolStripMenuItem.Enabled = false;
+            addAircraftToolStripMenuItem.Enabled = false;
+            editAircraftToolStripMenuItem.Enabled = false;
+            removeAircraftToolStripMenuItem.Enabled = false;
             showDataOnDataGridView(FlightTableHeaders, 1);
         }
 
         private void showAirportsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            addFlightToolStripMenuItem.Enabled = false;
+            editFlightToolStripMenuItem.Enabled = false;
+            removeFlightToolStripMenuItem.Enabled = false;
+            addAirportToolStripMenuItem.Enabled = true;
+            editAirportToolStripMenuItem.Enabled = false;
+            removeAirportToolStripMenuItem.Enabled = false;
+            addAircraftToolStripMenuItem.Enabled = false;
+            editAircraftToolStripMenuItem.Enabled = false;
+            removeAircraftToolStripMenuItem.Enabled = false;
             showDataOnDataGridView(AirportTableHeaders, 2);
         }
 
         private void showAircraftsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            addFlightToolStripMenuItem.Enabled = false;
+            editFlightToolStripMenuItem.Enabled = false;
+            removeFlightToolStripMenuItem.Enabled = false;
+            addAirportToolStripMenuItem.Enabled = false;
+            editAirportToolStripMenuItem.Enabled = false;
+            removeAirportToolStripMenuItem.Enabled = false;
+            addAircraftToolStripMenuItem.Enabled = true;
+            editAircraftToolStripMenuItem.Enabled = false;
+            removeAircraftToolStripMenuItem.Enabled = false;
             showDataOnDataGridView(AircraftTableHeaders, 3);
         }
 
@@ -267,6 +339,8 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditThisAircraftIfNotLeft)
                 Aircrafts.Add(NewForm.EditThisAircraftThisAircraft);
+
+            showDataOnDataGridView(AircraftTableHeaders, 3);
         }
 
         private void editAircraftToolStripMenuItem_Click(object sender, EventArgs e)
@@ -278,11 +352,15 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditThisAircraftIfNotLeft)
                 Aircrafts[dataGridView_main.CurrentRow.Index] = NewForm.EditThisAircraftThisAircraft;
+
+            showDataOnDataGridView(AircraftTableHeaders, 3);
         }
 
         private void removeAircraftToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Aircrafts.RemoveAt(dataGridView_main.CurrentRow.Index);
+
+            showDataOnDataGridView(AircraftTableHeaders, 3);
         }
 
         private void addFlightToolStripMenuItem_Click(object sender, EventArgs e)
@@ -294,6 +372,8 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditFlightIfNotLeft)
                 Flights.Add(NewForm.EditFlightThisFlight);
+
+            showDataOnDataGridView(FlightTableHeaders, 1);
         }
 
         private void editFlightToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,11 +385,58 @@ namespace Airport
             // Возвращаем данные
             if (NewForm.EditFlightIfNotLeft)
                 Flights[dataGridView_main.CurrentRow.Index] = NewForm.EditFlightThisFlight;
+
+            showDataOnDataGridView(FlightTableHeaders, 1);
         }
 
         private void removeFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Flights.RemoveAt(dataGridView_main.CurrentRow.Index);
+
+            showDataOnDataGridView(FlightTableHeaders, 1);
+        }
+
+        private void dataGridView_main_SelectionChanged(object sender, EventArgs e)
+        {
+            if (addFlightToolStripMenuItem.Enabled)
+            {
+                if (dataGridView_main.CurrentRow.Index == -1)
+                {
+                    editFlightToolStripMenuItem.Enabled = false;
+                    removeFlightToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editFlightToolStripMenuItem.Enabled = true;
+                    removeFlightToolStripMenuItem.Enabled = true;
+                }
+            }
+            else if (addAirportToolStripMenuItem.Enabled)
+            {
+                if (dataGridView_main.CurrentRow.Index == -1)
+                {
+                    editAirportToolStripMenuItem.Enabled = false;
+                    removeAirportToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editAirportToolStripMenuItem.Enabled = true;
+                    removeAirportToolStripMenuItem.Enabled = true;
+                }
+            }
+            else if (addAircraftToolStripMenuItem.Enabled)
+            {
+                if (dataGridView_main.CurrentRow.Index == -1)
+                {
+                    editAircraftToolStripMenuItem.Enabled = false;
+                    removeAircraftToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    editAircraftToolStripMenuItem.Enabled = true;
+                    removeAircraftToolStripMenuItem.Enabled = true;
+                }
+            }
         }
     }
 }

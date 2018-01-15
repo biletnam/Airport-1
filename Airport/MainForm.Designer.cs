@@ -32,6 +32,9 @@
             this.flightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showFlightsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sepFToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.addFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.airportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAirportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sepApToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
@@ -41,15 +44,12 @@
             this.planesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showAircraftsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sepAcToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
+            this.addAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thisAirportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView_main = new System.Windows.Forms.DataGridView();
-            this.addAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editAircraftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.addFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeFlightToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_main)).BeginInit();
             this.SuspendLayout();
@@ -91,6 +91,27 @@
             this.sepFToolStripMenuItem.Name = "sepFToolStripMenuItem";
             this.sepFToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
+            // addFlightToolStripMenuItem
+            // 
+            this.addFlightToolStripMenuItem.Name = "addFlightToolStripMenuItem";
+            this.addFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addFlightToolStripMenuItem.Text = "Добавить";
+            this.addFlightToolStripMenuItem.Click += new System.EventHandler(this.addFlightToolStripMenuItem_Click);
+            // 
+            // editFlightToolStripMenuItem
+            // 
+            this.editFlightToolStripMenuItem.Name = "editFlightToolStripMenuItem";
+            this.editFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editFlightToolStripMenuItem.Text = "Изменить";
+            this.editFlightToolStripMenuItem.Click += new System.EventHandler(this.editFlightToolStripMenuItem_Click);
+            // 
+            // removeFlightToolStripMenuItem
+            // 
+            this.removeFlightToolStripMenuItem.Name = "removeFlightToolStripMenuItem";
+            this.removeFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeFlightToolStripMenuItem.Text = "Удалить";
+            this.removeFlightToolStripMenuItem.Click += new System.EventHandler(this.removeFlightToolStripMenuItem_Click);
+            // 
             // airportsToolStripMenuItem
             // 
             this.airportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -106,33 +127,33 @@
             // showAirportsToolStripMenuItem
             // 
             this.showAirportsToolStripMenuItem.Name = "showAirportsToolStripMenuItem";
-            this.showAirportsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showAirportsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.showAirportsToolStripMenuItem.Text = "Показать";
             this.showAirportsToolStripMenuItem.Click += new System.EventHandler(this.showAirportsToolStripMenuItem_Click);
             // 
             // sepApToolStripMenuItem
             // 
             this.sepApToolStripMenuItem.Name = "sepApToolStripMenuItem";
-            this.sepApToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
+            this.sepApToolStripMenuItem.Size = new System.Drawing.Size(125, 6);
             // 
             // addAirportToolStripMenuItem
             // 
             this.addAirportToolStripMenuItem.Name = "addAirportToolStripMenuItem";
-            this.addAirportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addAirportToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.addAirportToolStripMenuItem.Text = "Добавить";
             this.addAirportToolStripMenuItem.Click += new System.EventHandler(this.addAirportToolStripMenuItem_Click);
             // 
             // editAirportToolStripMenuItem
             // 
             this.editAirportToolStripMenuItem.Name = "editAirportToolStripMenuItem";
-            this.editAirportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editAirportToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.editAirportToolStripMenuItem.Text = "Изменить";
             this.editAirportToolStripMenuItem.Click += new System.EventHandler(this.editAirportToolStripMenuItem_Click);
             // 
             // removeAirportToolStripMenuItem
             // 
             this.removeAirportToolStripMenuItem.Name = "removeAirportToolStripMenuItem";
-            this.removeAirportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeAirportToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.removeAirportToolStripMenuItem.Text = "Удалить";
             this.removeAirportToolStripMenuItem.Click += new System.EventHandler(this.removeAirportToolStripMenuItem_Click);
             // 
@@ -151,14 +172,35 @@
             // showAircraftsToolStripMenuItem
             // 
             this.showAircraftsToolStripMenuItem.Name = "showAircraftsToolStripMenuItem";
-            this.showAircraftsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.showAircraftsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.showAircraftsToolStripMenuItem.Text = "Показать";
             this.showAircraftsToolStripMenuItem.Click += new System.EventHandler(this.showAircraftsToolStripMenuItem_Click);
             // 
             // sepAcToolStripMenuItem
             // 
             this.sepAcToolStripMenuItem.Name = "sepAcToolStripMenuItem";
-            this.sepAcToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
+            this.sepAcToolStripMenuItem.Size = new System.Drawing.Size(125, 6);
+            // 
+            // addAircraftToolStripMenuItem
+            // 
+            this.addAircraftToolStripMenuItem.Name = "addAircraftToolStripMenuItem";
+            this.addAircraftToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addAircraftToolStripMenuItem.Text = "Добавить";
+            this.addAircraftToolStripMenuItem.Click += new System.EventHandler(this.addAircraftToolStripMenuItem_Click);
+            // 
+            // editAircraftToolStripMenuItem
+            // 
+            this.editAircraftToolStripMenuItem.Name = "editAircraftToolStripMenuItem";
+            this.editAircraftToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editAircraftToolStripMenuItem.Text = "Изменить";
+            this.editAircraftToolStripMenuItem.Click += new System.EventHandler(this.editAircraftToolStripMenuItem_Click);
+            // 
+            // removeAircraftToolStripMenuItem
+            // 
+            this.removeAircraftToolStripMenuItem.Name = "removeAircraftToolStripMenuItem";
+            this.removeAircraftToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.removeAircraftToolStripMenuItem.Text = "Удалить";
+            this.removeAircraftToolStripMenuItem.Click += new System.EventHandler(this.removeAircraftToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -191,48 +233,7 @@
             this.dataGridView_main.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView_main.Size = new System.Drawing.Size(624, 417);
             this.dataGridView_main.TabIndex = 1;
-            // 
-            // addAircraftToolStripMenuItem
-            // 
-            this.addAircraftToolStripMenuItem.Name = "addAircraftToolStripMenuItem";
-            this.addAircraftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addAircraftToolStripMenuItem.Text = "Добавить";
-            this.addAircraftToolStripMenuItem.Click += new System.EventHandler(this.addAircraftToolStripMenuItem_Click);
-            // 
-            // removeAircraftToolStripMenuItem
-            // 
-            this.removeAircraftToolStripMenuItem.Name = "removeAircraftToolStripMenuItem";
-            this.removeAircraftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeAircraftToolStripMenuItem.Text = "Удалить";
-            this.removeAircraftToolStripMenuItem.Click += new System.EventHandler(this.removeAircraftToolStripMenuItem_Click);
-            // 
-            // editAircraftToolStripMenuItem
-            // 
-            this.editAircraftToolStripMenuItem.Name = "editAircraftToolStripMenuItem";
-            this.editAircraftToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editAircraftToolStripMenuItem.Text = "Изменить";
-            this.editAircraftToolStripMenuItem.Click += new System.EventHandler(this.editAircraftToolStripMenuItem_Click);
-            // 
-            // addFlightToolStripMenuItem
-            // 
-            this.addFlightToolStripMenuItem.Name = "addFlightToolStripMenuItem";
-            this.addFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addFlightToolStripMenuItem.Text = "Добавить";
-            this.addFlightToolStripMenuItem.Click += new System.EventHandler(this.addFlightToolStripMenuItem_Click);
-            // 
-            // editFlightToolStripMenuItem
-            // 
-            this.editFlightToolStripMenuItem.Name = "editFlightToolStripMenuItem";
-            this.editFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editFlightToolStripMenuItem.Text = "Изменить";
-            this.editFlightToolStripMenuItem.Click += new System.EventHandler(this.editFlightToolStripMenuItem_Click);
-            // 
-            // removeFlightToolStripMenuItem
-            // 
-            this.removeFlightToolStripMenuItem.Name = "removeFlightToolStripMenuItem";
-            this.removeFlightToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeFlightToolStripMenuItem.Text = "Удалить";
-            this.removeFlightToolStripMenuItem.Click += new System.EventHandler(this.removeFlightToolStripMenuItem_Click);
+            this.dataGridView_main.SelectionChanged += new System.EventHandler(this.dataGridView_main_SelectionChanged);
             // 
             // MainForm
             // 
