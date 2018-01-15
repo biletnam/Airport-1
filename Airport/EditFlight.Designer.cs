@@ -65,6 +65,7 @@
             this.comboBox_flightType.Name = "comboBox_flightType";
             this.comboBox_flightType.Size = new System.Drawing.Size(160, 21);
             this.comboBox_flightType.TabIndex = 0;
+            this.comboBox_flightType.SelectedIndexChanged += new System.EventHandler(this.comboBox_flightType_SelectedIndexChanged);
             // 
             // textBox_number
             // 
@@ -179,6 +180,7 @@
             this.button_edit.TabIndex = 17;
             this.button_edit.Text = "Изменить";
             this.button_edit.UseVisualStyleBackColor = true;
+            this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
             // 
             // label_plane
             // 

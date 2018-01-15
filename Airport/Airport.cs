@@ -392,7 +392,7 @@ namespace Airport
 
     // Класс "Рейс"
     [Serializable]
-    public class Flight
+    public class Flight : ICloneable
     {
         private FlightType Type;            // Тип рейса
         private String Number;              // Номер рейса
@@ -589,6 +589,23 @@ namespace Airport
                     break;
                 }
             return IsFree;
+        }
+
+        // Глубокое копирование
+        public object Clone()
+        {
+            List<Ticket> newTicketsList = new List<Ticket>(this.Tickets);
+            return new Flight
+            {
+                Type = this.Type,
+                Number = this.Number,
+                DepartureTime = this.DepartureTime,
+                ArrivalTime = this.ArrivalTime,
+                DeparturePoint = this.DeparturePoint,
+                ArrivalPoint = this.ArrivalPoint,
+                Plane = this.Plane,
+                Tickets = newTicketsList
+            };
         }
     }
 }

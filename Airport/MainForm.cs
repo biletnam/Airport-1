@@ -288,7 +288,7 @@ namespace Airport
         private void addFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Открываем форму добавления рейса
-            EditFlight NewForm = new EditFlight(new Flight(), FormRole.Adding, ThisAirport, Airports, Aircrafts);
+            EditFlight NewForm = new EditFlight((Flight) new Flight().Clone(), FormRole.Adding, ThisAirport, Airports, Aircrafts);
             NewForm.ShowDialog(this);
 
             // Возвращаем данные
@@ -299,7 +299,7 @@ namespace Airport
         private void editFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Открываем форму изменения выбранного рейса
-            EditFlight NewForm = new EditFlight(Flights[dataGridView_main.CurrentRow.Index], FormRole.Changing, ThisAirport, Airports, Aircrafts);
+            EditFlight NewForm = new EditFlight((Flight) Flights[dataGridView_main.CurrentRow.Index].Clone(), FormRole.Changing, ThisAirport, Airports, Aircrafts);
             NewForm.ShowDialog(this);
 
             // Возвращаем данные

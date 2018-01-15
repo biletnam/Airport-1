@@ -33,13 +33,13 @@ namespace Airport
             }
         }
 
-        public SelectDateTime()
+        public SelectDateTime(DateTime CurrentTime)
         {
             InitializeComponent();
 
             // По умолчанию пользователь не ввел данные
             IfNotLeft = false;
-            ThisDateTime = DateTime.Now;
+            ThisDateTime = CurrentTime;
 
             // Заполняем форму
             dateTimePicker_date.Value = ThisDateTime;
