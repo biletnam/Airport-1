@@ -46,11 +46,13 @@ namespace Airport
             {
                 Text = "Добавить самолет";
                 button_edit.Text = "Добавить";
+                groupBox_tickets.Enabled = false;
             }
             else if (FR == FormRole.Changing)
             {
                 Text = "Изменить самолет";
                 button_edit.Text = "Изменить";
+                comboBox_plane.Enabled = false;
             }
 
             // Заполняем форму
@@ -72,12 +74,39 @@ namespace Airport
             }
             comboBox_departurePoint.SelectedIndex = 0;
             comboBox_arrivalPoint.SelectedIndex = 0;
+            if (!(comboBox_departurePoint.Items.Count == 0 ||
+                comboBox_arrivalPoint.Items.Count == 0))
+            {
+                if (comboBox_flightType.SelectedIndex == (int) FlightType.Depart)
+                {
+                    comboBox_departurePoint.SelectedIndex = 1;
+                    comboBox_departurePoint.Enabled = false;
+                    comboBox_arrivalPoint.Enabled = true;
+                }
+                else if (comboBox_flightType.SelectedIndex == (int) FlightType.Arrival)
+                {
+                    comboBox_departurePoint.Enabled = true;
+                    comboBox_arrivalPoint.SelectedIndex = 1;
+                    comboBox_arrivalPoint.Enabled = false;
+                }
+                else if (comboBox_flightType.SelectedIndex == (int) FlightType.Transit)
+                {
+                    comboBox_departurePoint.Enabled = true;
+                    comboBox_arrivalPoint.Enabled = true;
+                }
+            }
             comboBox_plane.Items.Add(ThisFlight.FlightPlane.AircraftModel + " : " + ThisFlight.FlightPlane.AircraftSerialNumber);
             foreach (Aircraft Aircraft in Aircrafts)
             {
                 comboBox_plane.Items.Add(Aircraft.AircraftModel + " : " + Aircraft.AircraftSerialNumber);
             }
             comboBox_plane.SelectedIndex = 0;
+            button_removeTicket.Enabled = false;
+            comboBox_travelClass.Items.Add("Первый класс");
+            comboBox_travelClass.Items.Add("Бизнесс класс");
+            comboBox_travelClass.Items.Add("Комфорт класс");
+            comboBox_travelClass.Items.Add("Эконом класс");
+            comboBox_travelClass.SelectedIndex = 3;
 
             // По умолчанию пользователь не ввел данные
             IfNotLeft = false;
@@ -87,6 +116,56 @@ namespace Airport
             this.ThisAirport = ThisAirport;
             this.Airports = Airports;
             this.Aircrafts = Aircrafts;
+
+            // Выводим данные на таблицу
+            initializeDataGridView();
+            showDataOnDataGridView();
+
+            // Выводим свободные места
+            updateComboBoxWithFreeSeats();
+        }
+
+        // Инициализация таблицы
+        private void initializeDataGridView()
+        {
+            dataGridView_main.Columns.Add("Место", "Место");
+            dataGridView_main.Columns.Add("Цена", "Цена");
+            dataGridView_main.Columns.Add("Пассажир", "Пассажир");
+
+            // Отключаем пользовательскую сортировку
+            foreach (DataGridViewColumn column in dataGridView_main.Columns)
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        }
+
+        private void showDataOnDataGridView()
+        {
+            dataGridView_main.Rows.Clear();
+
+            foreach (Ticket Ticket in ThisFlight.FlightTickets)
+            {
+                string[] newRow = new string[] {    Convert.ToString(Ticket.TicketSeat),
+                                                    Convert.ToString(Ticket.TicketPrice),
+                                                    Ticket.TicketPassenger.HumanFullName };
+                dataGridView_main.Rows.Add(newRow);
+            }
+        }
+
+        private void updateComboBoxWithFreeSeats()
+        {
+            comboBox_seat.Items.Clear();
+            List<Int32> FreeSeats = ThisFlight.GetFreeTickets();
+            foreach (Int32 Seat in FreeSeats)
+                comboBox_seat.Items.Add(Convert.ToString(Seat));
+
+            if (FreeSeats.Count > 0)
+            {
+                comboBox_seat.Enabled = true;
+                comboBox_seat.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBox_seat.Enabled = false;
+            }
         }
 
         private void button_departureTime_Click(object sender, EventArgs e)
@@ -117,6 +196,9 @@ namespace Airport
 
         private void comboBox_flightType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBox_departurePoint.Items.Count == 0 ||
+                comboBox_arrivalPoint.Items.Count == 0)
+                return;
             if (comboBox_flightType.SelectedIndex == (int) FlightType.Depart)
             {
                 comboBox_departurePoint.SelectedIndex = 1;
@@ -182,6 +264,95 @@ namespace Airport
             ThisFlight = NewFlight;
 
             this.Close();
+        }
+
+        private void button_removeTicket_Click(object sender, EventArgs e)
+        {
+            ThisFlight.RemoveTicket(ThisFlight.FlightTickets[dataGridView_main.CurrentRow.Index].TicketSeat);
+
+            showDataOnDataGridView();
+            updateComboBoxWithFreeSeats();
+
+            if (ThisFlight.FlightTickets.Count == 0)
+                button_removeTicket.Enabled = false;
+        }
+
+        private void button_sellTicket_Click(object sender, EventArgs e)
+        {
+            // Проверяем введенные данные
+            if (textBox_fullName.Text.Length == 0)
+            {
+                MessageBox.Show(this,
+                                "В полном имени пассажира допущена ошибка: полное не может быть пустым",
+                                "Полное имя пассажира введено некорректно",
+                                MessageBoxButtons.OK);
+                textBox_fullName.Focus();
+                return;
+            }
+
+            ThisFlight.AddTicket(   Convert.ToInt32(comboBox_seat.Text),
+                                    Convert.ToDouble(numericUpDown_price.Value),
+                                    new Passenger(textBox_fullName.Text, Convert.ToInt32(numericUpDown_age.Value)),
+                                    (TravelClass)comboBox_travelClass.SelectedIndex );
+
+            button_removeTicket.Enabled = true;
+
+            showDataOnDataGridView();
+            updateComboBoxWithFreeSeats();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void textBox_fullName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                numericUpDown_age.Focus();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void numericUpDown_age_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                comboBox_travelClass.Focus();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void comboBox_travelClass_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                comboBox_seat.Focus();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void comboBox_seat_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                numericUpDown_price.Focus();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void numericUpDown_price_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button_sellTicket.Focus();
+        }
+
+        // Автопереход на следующий элемент формы на нажатию enter
+        private void button_sellTicket_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button_sellTicket.Focus();
+        }
+
+        private void dataGridView_main_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridView_main.CurrentRow.Index == -1)
+            {
+                button_removeTicket.Enabled = false;
+            }
+            else
+            {
+                button_removeTicket.Enabled = true;
+            }
         }
     }
 }
