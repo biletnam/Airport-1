@@ -50,9 +50,25 @@
             this.dataGridView_tickets = new System.Windows.Forms.DataGridView();
             this.button_removeTicket = new System.Windows.Forms.Button();
             this.button_sellTicket = new System.Windows.Forms.Button();
+            this.comboBox_seat = new System.Windows.Forms.ComboBox();
+            this.label_soldTickets = new System.Windows.Forms.Label();
+            this.label_sellTicket = new System.Windows.Forms.Label();
+            this.numericUpDown_price = new System.Windows.Forms.NumericUpDown();
+            this.label_seat = new System.Windows.Forms.Label();
+            this.label_price = new System.Windows.Forms.Label();
+            this.label_passenger = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label_fullName = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label_age = new System.Windows.Forms.Label();
+            this.comboBox_travelClass = new System.Windows.Forms.ComboBox();
+            this.label_travelClass = new System.Windows.Forms.Label();
+            this.label_ticket = new System.Windows.Forms.Label();
             this.groupBox_flight.SuspendLayout();
             this.groupBox_tickets.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_flightType
@@ -174,7 +190,7 @@
             // 
             // button_edit
             // 
-            this.button_edit.Location = new System.Drawing.Point(672, 228);
+            this.button_edit.Location = new System.Drawing.Point(713, 368);
             this.button_edit.Name = "button_edit";
             this.button_edit.Size = new System.Drawing.Size(100, 23);
             this.button_edit.TabIndex = 17;
@@ -238,12 +254,26 @@
             // 
             // groupBox_tickets
             // 
+            this.groupBox_tickets.Controls.Add(this.label_ticket);
+            this.groupBox_tickets.Controls.Add(this.label_travelClass);
+            this.groupBox_tickets.Controls.Add(this.comboBox_travelClass);
+            this.groupBox_tickets.Controls.Add(this.label_age);
+            this.groupBox_tickets.Controls.Add(this.numericUpDown1);
+            this.groupBox_tickets.Controls.Add(this.label_fullName);
+            this.groupBox_tickets.Controls.Add(this.textBox1);
+            this.groupBox_tickets.Controls.Add(this.label_passenger);
+            this.groupBox_tickets.Controls.Add(this.label_price);
+            this.groupBox_tickets.Controls.Add(this.label_seat);
+            this.groupBox_tickets.Controls.Add(this.numericUpDown_price);
+            this.groupBox_tickets.Controls.Add(this.label_sellTicket);
+            this.groupBox_tickets.Controls.Add(this.label_soldTickets);
+            this.groupBox_tickets.Controls.Add(this.comboBox_seat);
             this.groupBox_tickets.Controls.Add(this.dataGridView_tickets);
             this.groupBox_tickets.Controls.Add(this.button_removeTicket);
             this.groupBox_tickets.Controls.Add(this.button_sellTicket);
             this.groupBox_tickets.Location = new System.Drawing.Point(338, 12);
             this.groupBox_tickets.Name = "groupBox_tickets";
-            this.groupBox_tickets.Size = new System.Drawing.Size(434, 210);
+            this.groupBox_tickets.Size = new System.Drawing.Size(475, 350);
             this.groupBox_tickets.TabIndex = 24;
             this.groupBox_tickets.TabStop = false;
             this.groupBox_tickets.Text = "Билеты";
@@ -251,14 +281,14 @@
             // dataGridView_tickets
             // 
             this.dataGridView_tickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_tickets.Location = new System.Drawing.Point(6, 18);
+            this.dataGridView_tickets.Location = new System.Drawing.Point(6, 32);
             this.dataGridView_tickets.Name = "dataGridView_tickets";
-            this.dataGridView_tickets.Size = new System.Drawing.Size(418, 150);
+            this.dataGridView_tickets.Size = new System.Drawing.Size(418, 126);
             this.dataGridView_tickets.TabIndex = 27;
             // 
             // button_removeTicket
             // 
-            this.button_removeTicket.Location = new System.Drawing.Point(324, 174);
+            this.button_removeTicket.Location = new System.Drawing.Point(324, 164);
             this.button_removeTicket.Name = "button_removeTicket";
             this.button_removeTicket.Size = new System.Drawing.Size(100, 23);
             this.button_removeTicket.TabIndex = 25;
@@ -267,18 +297,143 @@
             // 
             // button_sellTicket
             // 
-            this.button_sellTicket.Location = new System.Drawing.Point(218, 174);
+            this.button_sellTicket.Location = new System.Drawing.Point(366, 317);
             this.button_sellTicket.Name = "button_sellTicket";
             this.button_sellTicket.Size = new System.Drawing.Size(100, 23);
             this.button_sellTicket.TabIndex = 26;
             this.button_sellTicket.Text = "Продать";
             this.button_sellTicket.UseVisualStyleBackColor = true;
             // 
+            // comboBox_seat
+            // 
+            this.comboBox_seat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_seat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox_seat.FormattingEnabled = true;
+            this.comboBox_seat.Location = new System.Drawing.Point(306, 264);
+            this.comboBox_seat.Name = "comboBox_seat";
+            this.comboBox_seat.Size = new System.Drawing.Size(160, 21);
+            this.comboBox_seat.TabIndex = 21;
+            // 
+            // label_soldTickets
+            // 
+            this.label_soldTickets.AutoSize = true;
+            this.label_soldTickets.Location = new System.Drawing.Point(6, 16);
+            this.label_soldTickets.Name = "label_soldTickets";
+            this.label_soldTickets.Size = new System.Drawing.Size(105, 13);
+            this.label_soldTickets.TabIndex = 21;
+            this.label_soldTickets.Text = "Проданные билеты";
+            // 
+            // label_sellTicket
+            // 
+            this.label_sellTicket.AutoSize = true;
+            this.label_sellTicket.Location = new System.Drawing.Point(6, 197);
+            this.label_sellTicket.Name = "label_sellTicket";
+            this.label_sellTicket.Size = new System.Drawing.Size(82, 13);
+            this.label_sellTicket.TabIndex = 28;
+            this.label_sellTicket.Text = "Продать билет";
+            // 
+            // numericUpDown_price
+            // 
+            this.numericUpDown_price.Location = new System.Drawing.Point(306, 291);
+            this.numericUpDown_price.Name = "numericUpDown_price";
+            this.numericUpDown_price.Size = new System.Drawing.Size(160, 20);
+            this.numericUpDown_price.TabIndex = 29;
+            this.numericUpDown_price.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // label_seat
+            // 
+            this.label_seat.AutoSize = true;
+            this.label_seat.Location = new System.Drawing.Point(261, 267);
+            this.label_seat.Name = "label_seat";
+            this.label_seat.Size = new System.Drawing.Size(39, 13);
+            this.label_seat.TabIndex = 30;
+            this.label_seat.Text = "Место";
+            // 
+            // label_price
+            // 
+            this.label_price.AutoSize = true;
+            this.label_price.Location = new System.Drawing.Point(223, 293);
+            this.label_price.Name = "label_price";
+            this.label_price.Size = new System.Drawing.Size(77, 13);
+            this.label_price.TabIndex = 31;
+            this.label_price.Text = "Базовая цена";
+            // 
+            // label_passenger
+            // 
+            this.label_passenger.AutoSize = true;
+            this.label_passenger.Location = new System.Drawing.Point(162, 217);
+            this.label_passenger.Name = "label_passenger";
+            this.label_passenger.Size = new System.Drawing.Size(59, 13);
+            this.label_passenger.TabIndex = 33;
+            this.label_passenger.Text = "Пассажир";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(61, 240);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(160, 20);
+            this.textBox1.TabIndex = 21;
+            // 
+            // label_fullName
+            // 
+            this.label_fullName.AutoSize = true;
+            this.label_fullName.Location = new System.Drawing.Point(21, 245);
+            this.label_fullName.Name = "label_fullName";
+            this.label_fullName.Size = new System.Drawing.Size(34, 13);
+            this.label_fullName.TabIndex = 34;
+            this.label_fullName.Text = "ФИО";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(61, 266);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(160, 20);
+            this.numericUpDown1.TabIndex = 35;
+            this.numericUpDown1.UpDownAlign = System.Windows.Forms.LeftRightAlignment.Left;
+            // 
+            // label_age
+            // 
+            this.label_age.AutoSize = true;
+            this.label_age.Location = new System.Drawing.Point(6, 268);
+            this.label_age.Name = "label_age";
+            this.label_age.Size = new System.Drawing.Size(49, 13);
+            this.label_age.TabIndex = 37;
+            this.label_age.Text = "Возраст";
+            // 
+            // comboBox_travelClass
+            // 
+            this.comboBox_travelClass.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_travelClass.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox_travelClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_travelClass.FormattingEnabled = true;
+            this.comboBox_travelClass.Location = new System.Drawing.Point(306, 237);
+            this.comboBox_travelClass.Name = "comboBox_travelClass";
+            this.comboBox_travelClass.Size = new System.Drawing.Size(160, 21);
+            this.comboBox_travelClass.TabIndex = 21;
+            // 
+            // label_travelClass
+            // 
+            this.label_travelClass.AutoSize = true;
+            this.label_travelClass.Location = new System.Drawing.Point(262, 240);
+            this.label_travelClass.Name = "label_travelClass";
+            this.label_travelClass.Size = new System.Drawing.Size(38, 13);
+            this.label_travelClass.TabIndex = 38;
+            this.label_travelClass.Text = "Класс";
+            // 
+            // label_ticket
+            // 
+            this.label_ticket.AutoSize = true;
+            this.label_ticket.Location = new System.Drawing.Point(429, 216);
+            this.label_ticket.Name = "label_ticket";
+            this.label_ticket.Size = new System.Drawing.Size(37, 13);
+            this.label_ticket.TabIndex = 39;
+            this.label_ticket.Text = "Билет";
+            // 
             // EditFlight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 261);
+            this.ClientSize = new System.Drawing.Size(819, 401);
             this.Controls.Add(this.groupBox_tickets);
             this.Controls.Add(this.groupBox_flight);
             this.Controls.Add(this.button_edit);
@@ -291,7 +446,10 @@
             this.groupBox_flight.ResumeLayout(false);
             this.groupBox_flight.PerformLayout();
             this.groupBox_tickets.ResumeLayout(false);
+            this.groupBox_tickets.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tickets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_price)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,5 +478,19 @@
         private System.Windows.Forms.DataGridView dataGridView_tickets;
         private System.Windows.Forms.Button button_removeTicket;
         private System.Windows.Forms.Button button_sellTicket;
+        private System.Windows.Forms.Label label_ticket;
+        private System.Windows.Forms.Label label_travelClass;
+        private System.Windows.Forms.ComboBox comboBox_travelClass;
+        private System.Windows.Forms.Label label_age;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label_fullName;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label_passenger;
+        private System.Windows.Forms.Label label_price;
+        private System.Windows.Forms.Label label_seat;
+        private System.Windows.Forms.NumericUpDown numericUpDown_price;
+        private System.Windows.Forms.Label label_sellTicket;
+        private System.Windows.Forms.Label label_soldTickets;
+        private System.Windows.Forms.ComboBox comboBox_seat;
     }
 }
