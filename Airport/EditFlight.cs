@@ -220,6 +220,27 @@ namespace Airport
 
         private void button_edit_Click(object sender, EventArgs e)
         {
+            // Проверяем введенные данные
+            if (textBox_number.Text.Length == 0)
+            {
+                MessageBox.Show(this,
+                                "В номере рейса пассажира допущена ошибка: номер не может быть пустым",
+                                "Номер рейса введен некорректно",
+                                MessageBoxButtons.OK);
+                textBox_number.Focus();
+                return;
+            }
+
+            // Проверяем введенные данные
+            if (ThisFlight.FlightDepartureTime > ThisFlight.FlightArrivalTime)
+            {
+                MessageBox.Show(this,
+                                "Дата прибытия не может быть раньше даты отправки",
+                                "Дата/время отправки/прибытия указаны некорректно",
+                                MessageBoxButtons.OK);
+                return;
+            }
+
             // Устанавливаем данные для передачи
             IfNotLeft = true;
 
@@ -285,6 +306,17 @@ namespace Airport
                 MessageBox.Show(this,
                                 "В полном имени пассажира допущена ошибка: полное не может быть пустым",
                                 "Полное имя пассажира введено некорректно",
+                                MessageBoxButtons.OK);
+                textBox_fullName.Focus();
+                return;
+            }
+
+            // Проверяем введенные данные
+            if (ThisFlight.GetFreeTickets().Count == 0)
+            {
+                MessageBox.Show(this,
+                                "Ошибка, нет свободных мест",
+                                "Нет свободных мест",
                                 MessageBoxButtons.OK);
                 textBox_fullName.Focus();
                 return;
